@@ -10,3 +10,4 @@ class InsertResourceType(forms.ModelForm):
     class Meta:
         model=models.ResourceType
         fields=('name',)
+

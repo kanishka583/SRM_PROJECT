@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %}
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Resource Name</th>
+                <th scope="col">Resource Type</th>
+                <th scope="col">Resource School</th>
+                <th scope="col" colspan="5" style="text-align: center;">Availability</th>
+            </tr>
+            {% for item in resources %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.resourceType.name}}</td>
+                <td>{{item.school.first_name}} {{item.school.last_name}}</td>
+                <td>{% if item.h9_10 is None %}
+                    <a href="{% url 'srm:bookslot1' item.id%}"> <button type="button" class="btn btn-success">9 to 10</button></a> {% else %}
+                    <button type="button" class="btn btn-danger">9 to 10</button> {% endif %}
+                </td>
+                <td>{% if item.h10_11 is None %}
+                    <a href="{% url 'srm:bookslot2' item.id%}"><button type="button" class="btn btn-success">10 to 11</button></a> {% else %}
+                    <button type="button" class="btn btn-danger">10 to 11</button> {% endif %}
+                </td>
+                <td>{% if item.h11_12 is None %}
+                    <a href="{% url 'srm:bookslot3' item.id%}"><button type="button" class="btn btn-success">11 to 12</button></a> {% else %}
+                    <button type="button" class="btn btn-danger">11 to 12</button> {% endif %}
+                </td>
+                <td>{% if item.h1_2 is None %}
+                    <a href="{% url 'srm:bookslot4' item.id%}"><button type="button" class="btn btn-success">1 to 2</button></a> {% else %}
+                    <button type="button" class="btn btn-danger">1 to 2</button> {% endif %}
+                </td>
+                <td>{% if item.h2_3 is None %}
+                    <a href="{% url 'srm:bookslot5' item.id%}"><button type="button" class="btn btn-success">2 to 3</button></a> {% else %}
+                    <button type="button" class="btn btn-danger">2 to 3</button> {% endif %}
+                </td>
+            </tr>
+
+            {% endfor %}
+    </table>
+</div>
+{% endblock %}
